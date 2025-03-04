@@ -1,0 +1,8 @@
+#UNDERSTANDING NEURAL NETWORKS
+https://www.youtube.com/watch?v=zxagGtF9MeU&list=PLblh5JKOoLUIxGDQs4LFFD--41Vzf-ME1&index=1 - StatQuest videos
+
+#ReLu and SoftMax
+https://www.youtube.com/watch?v=rpdclPvpaBM
+https://www.geeksforgeeks.org/cpp-matrix-multiplication/
+https://stackoverflow.com/questions/10274162/how-to-find-2d-array-size-in-c
+https://github.com/Pawandeep-prog/simple-nn-cpp/blob/main/part1%2Bpart2_activations.cpp
