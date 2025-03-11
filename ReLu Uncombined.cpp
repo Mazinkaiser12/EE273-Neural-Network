@@ -35,7 +35,7 @@ double Relu(double inputs, double weights, double biases)
     //This is the exception, as it is a variable that will be returned by the function and thus made in the function
     double output[weightsRows];
 
-    //Declaration for matric manipulation, normally matrix multiplication in c++ returns straight to new matrix 
+    //Declaration for matrix manipulation, normally matrix multiplication in c++ returns straight to new matrix 
     //but since we pass through ReLu we create a sum that frequently returns to 0 during multiplication
     double sum = 0;
 
