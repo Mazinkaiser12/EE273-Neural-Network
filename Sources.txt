@@ -15,3 +15,6 @@ https://github.com/dani2442/DeepNeuralNetwork
 https://www.youtube.com/watch?v=-vXVfcAy_JE
 https://www.youtube.com/watch?v=RgKreY1HK_8
 https://eigen.tuxfamily.org/dox/index.html
+
+# A guide to convolution arithmetic for deep learning
+https://arxiv.org/pdf/1603.07285
