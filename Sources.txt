@@ -6,3 +6,12 @@ https://www.youtube.com/watch?v=rpdclPvpaBM
 https://www.geeksforgeeks.org/cpp-matrix-multiplication/
 https://stackoverflow.com/questions/10274162/how-to-find-2d-array-size-in-c
 https://github.com/Pawandeep-prog/simple-nn-cpp/blob/main/part1%2Bpart2_activations.cpp
+
+#General construction and Pooling
+https://www.youtube.com/watch?v=lRsfq_GrzZ4&list=PL3MCKCM5GS4UGRk9wUD5HaNKTwm71fNZx&index=1
+https://github.com/dani2442/DeepNeuralNetwork
+
+#Eigen
+https://www.youtube.com/watch?v=-vXVfcAy_JE
+https://www.youtube.com/watch?v=RgKreY1HK_8
+https://eigen.tuxfamily.org/dox/index.html
