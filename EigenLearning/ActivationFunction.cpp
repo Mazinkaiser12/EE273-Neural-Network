@@ -35,11 +35,7 @@ Eigen::MatrixXd ReLU(Eigen::MatrixXd m) {
 	{
 		for (int j = 0; j < m.cols(); j++)
 		{
-			if (m(i, j) > 0)
-			{
-				m(i, j) = m(i, j);
-			}
-			else
+			if (m(i, j) < 0)
 			{
 				m(i, j) = 0;
 			}
