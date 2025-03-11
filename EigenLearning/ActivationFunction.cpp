@@ -48,8 +48,8 @@ Eigen::MatrixXd ReLU(Eigen::MatrixXd m) {
 
 Eigen::MatrixXd softmax(const Eigen::MatrixXd m) {
     /**
-     * ReLu re-implemented in Eigen for week 8, was completed for week 7 but not using Eigen
-     * ReLu function here does not apply weight and biased mathematics in line with the other active functions
+     * Softmax re-implemented in Eigen for week 8, was completed for week 7 but not using Eigen
+     * Softmax is applied as an end to a series of activation functions
      * Function array() returns an Eigen::Array object, which is a wrapper around the data of the matrix.
      * The ReLu() function is applied to each element of the array, and the result is stored in a new array and then automatically converted back to a matrix.
      */
