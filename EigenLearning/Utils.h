@@ -7,3 +7,4 @@ using namespace std;
 void print(int data);
 void print(string data);
 void print(Eigen::MatrixXd data);
+void error(std::string data);

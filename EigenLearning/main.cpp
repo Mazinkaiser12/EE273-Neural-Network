@@ -2,6 +2,9 @@
 #include <Eigen/Dense>
 #include "ActivationFunction.h"
 #include "Utils.h"
+#include "PoolingLayer.h"
+#include "Deconvolution.h"
+#include <typeinfo>
 
 using Eigen::MatrixXd;
 using namespace std;
@@ -17,7 +20,7 @@ int main()
 	cout << "Example code from Eigen website" << "\n" << m << endl;
 
 	//Comma-initialization and print size
-	Eigen::Matrix3f nums;
+	Eigen::Matrix3d nums;
 	nums << 1, 2, -3, 4, 5, 6, 7, 8, 9;
 	cout << "Comma-initialization and print size" << "\n" << nums << "\n" << "Size: " << nums.size() << endl;
 
@@ -51,7 +54,7 @@ int main()
 	cout << "Minimal coefficient of a matrix" << "\n" << nums.minCoeff() << endl;
 
 	//Maximum Coefficient
-	cout << "Maximum coefficient of a matrix" << "\n" << nums.maxCoeff() << endl;
+	cout << "Maximum coefficient of a matrix" << "\n" << typeid(nums.maxCoeff()).name() << endl;
 
 	//Trace of a matrix
 	cout << "Trace of a matrix" << "\n" << nums.trace() << endl;
@@ -64,4 +67,42 @@ int main()
 	MatrixXd b = softmax(m);
 	cout << "Soft max of a matrix" << "\n" << b << endl;
 
+	//Testing pooling layer
+	Pooling test(false, 3, 0, 1);
+	test.returnConFig();
+	MatrixXd input(5, 5);
+	input <<
+		6, 3, 2, 1, 0,
+		0, 0, 1, 3, 1,
+		3, 1, 2, 2, 3,
+		2, 0, 0, 2, 2,
+		2, 0, 0, 0, 1;
+	cout << "Input matrix : " << endl;
+	print(input);
+	cout << "Performing pooling..." << endl;
+	MatrixXd output = test.launch(input);
+	cout << "Output matrix : " << endl;
+	print(output);
+
+	//Testing Deconvolution layer
+	Deconvolution testy(3, 1, 2, 4);
+	test.returnConFig();
+	MatrixXd Filter(3, 3);
+	Filter <<
+		1, 2, 1,
+		2, 0, 1,
+		0, 2, 1;
+	cout << "Filter matrix : " << endl;
+	print(Filter);
+	testy.setFilter(Filter);
+	MatrixXd inputD(2, 2);
+	inputD <<
+		2, 1,
+		3, 2;
+	cout << "Input matrix : " << endl;
+	print(inputD);
+	cout << "Performing deconvolution..." << endl;
+	MatrixXd outputD = testy.launch(inputD);
+	cout << "Output matrix : " << endl;
+	print(outputD);
 }

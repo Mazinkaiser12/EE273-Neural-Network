@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActivationFunction.cpp" />
+    <ClCompile Include="Deconvolution.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PoolingLayer.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -136,7 +137,7 @@
   <ItemGroup>
     <ClInclude Include="ActivationFunction.h" />
     <ClInclude Include="BaseLayer.h" />
-    <ClInclude Include="MaxNAverage.h" />
+    <ClInclude Include="Deconvolution.h" />
     <ClInclude Include="PoolingLayer.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>

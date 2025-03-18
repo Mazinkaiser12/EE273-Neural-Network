@@ -1,2 +1,5 @@
-﻿  PoolingLayer.cpp
+﻿  Deconvolution.cpp
+C:\Users\Admin\source\repos\EigenLearning\Deconvolution.cpp(95,11): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+C:\Users\Admin\source\repos\EigenLearning\Deconvolution.cpp(96,11): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+C:\Users\Admin\source\repos\EigenLearning\Deconvolution.cpp(176,1): warning C4715: 'Deconvolution::launch': not all control paths return a value
   EigenLearning.vcxproj -> C:\Users\Admin\source\repos\EigenLearning\x64\Debug\EigenLearning.exe

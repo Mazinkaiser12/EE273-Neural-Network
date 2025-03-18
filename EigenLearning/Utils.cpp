@@ -17,3 +17,8 @@ void print(string data) {
 void print(Eigen::MatrixXd data) {
 	cout << data << endl;
 }
+
+void error(string data) {
+	std::cerr << data << std::endl;
+	exit(1);
+}

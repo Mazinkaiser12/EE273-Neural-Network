@@ -27,6 +27,9 @@
     <ClCompile Include="PoolingLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Deconvolution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActivationFunction.h">
@@ -41,7 +44,7 @@
     <ClInclude Include="PoolingLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MaxNAverage.h">
+    <ClInclude Include="Deconvolution.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
