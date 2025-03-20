@@ -1,8 +1,7 @@
 #include "Deconvolution.h"
 #include "Utils.h"
 #include <iostream>
-#include <Eigen/Dense>
-#include <Eigen/Core>
+#include <Eigen>
 #include <vector>
 #include <stdexcept>
 
@@ -11,33 +10,31 @@ using Eigen::MatrixXd;
 
 Deconvolution::Deconvolution()
 {
-	cout << "Pooling layer created, default configuration" << endl;
-	this->returnConFig();
+	cout << "Pooling layer created, default configuration" << "\n" << endl;
+	this->getConfig();
 }
 
-Deconvolution::Deconvolution(int filterSize, int padding, int stride, int outSize)
+Deconvolution::Deconvolution(int filterSize, int padding, int stride)
 {
 	this->filterSize = filterSize;
 	this->padding = padding;
 	this->stride = stride;
-	this->outSize = outSize;
 
 	if (filterSize < 1 or padding < 0 or stride < 0)
 	{
 		error("Input constructor elements must be above 0");
 	}
 
-	cout << "Pooling layer created with specified type, filter size, padding and stride" << endl;
-	this->returnConFig();
+	cout << "Deconvolution layer created with specified type, filter size, padding and stride" << "\n" << endl;
+	this->getConfig();
 }
 
-Deconvolution::Deconvolution(int filterSize, int padding, int stride, int outSize, string ActivationFunction)
+Deconvolution::Deconvolution(int filterSize, int padding, int stride, string ActivationFunction)
 {
 	this->filterSize = filterSize;
 	this->padding = padding;
 	this->stride = stride;
 	this->ActivationFunction = ActivationFunction;
-	this->outSize = outSize;
 
 	Filter = MatrixXd::Zero(filterSize, filterSize);
 
@@ -46,35 +43,31 @@ Deconvolution::Deconvolution(int filterSize, int padding, int stride, int outSiz
 		error("Input constructor elements must be above 0");
 	}
 
-	cout << "Pooling layer created, Act Func configuration" << endl;
-	this->returnConFig();
+	cout << "Deconvolution layer created, Act Func configuration" << "\n" << endl;
+	this->getConfig();
 }
 
-void Deconvolution::returnConFig()
+void Deconvolution::getConfig()
 {
-	cout << "Filter size : " << this->filterSize << endl;
-	cout << "Filter : ";
-	print(Filter);
-	cout << "Stride : " << this->stride << endl;
-	cout << "Pading : " << this->padding << endl;
-	cout << "Activation Function : " << this->ActivationFunction << endl;
+	cout << "Filter size" << "\t\t" << " : " << this->filterSize << endl;
+	cout << "Stride" << "\t\t\t" << " : " << this->stride << endl;
+	cout << "Pading" << "\t\t\t" << " : " << this->padding << endl;
+	cout << "Activation Function" << "\t" << " : " << this->ActivationFunction << "\n" << endl;
 }
 
-void Deconvolution::setDeconvolution(int filterSize, int padding, int stride, int outSize)
+void Deconvolution::setConfig(int filterSize, int padding, int stride)
 {
 	this->filterSize = filterSize;
 	this->padding = padding;
 	this->stride = stride;
-	this->outSize = outSize;
 }
 
-void Deconvolution::setDeconvolution(int filterSize, int padding, int stride, int outSize, string ActivationFunction)
+void Deconvolution::setConfig(int filterSize, int padding, int stride, string ActivationFunction)
 {
 	this->filterSize = filterSize;
 	this->padding = padding;
 	this->stride = stride;
 	this->ActivationFunction = ActivationFunction;
-	this->outSize = outSize;
 }
 
 void Deconvolution::setFilter(MatrixXd Filter)
@@ -86,7 +79,7 @@ void Deconvolution::setFilter(MatrixXd Filter)
 	this->Filter = Filter;
 }
 
-MatrixXd Deconvolution::padded(MatrixXd outMatrix, int padding)
+MatrixXd Deconvolution::addPadding(MatrixXd outMatrix, int padding)
 {
 	if (padding == 0)
 	{
@@ -101,6 +94,8 @@ MatrixXd Deconvolution::padded(MatrixXd outMatrix, int padding)
 
 MatrixXd Deconvolution::launch(MatrixXd inpMatrix)
 {
+	//Calculating output matrix size
+	this->outSize = ((inpMatrix.rows() - 1) * stride) - (2 * padding) + filterSize + 1;
 	//Series of checks to ensure launch is successfull
 	//Existance of input matrix
 	if (inpMatrix.rows() == 0 or inpMatrix.cols() == 0)
@@ -136,7 +131,7 @@ MatrixXd Deconvolution::launch(MatrixXd inpMatrix)
 	MatrixXd outRawMatrix = MatrixXd::Zero(outSize, outSize);
 	MatrixXd outMatrix = MatrixXd::Zero(outSize, outSize);
 	//Add padding to output matrix
-	outRawMatrix = padded(outRawMatrix, padding);
+	outRawMatrix = addPadding(outRawMatrix, padding);
 	double result{ 0 };
 	for (int i = 0; i < inpMatrix.rows(); i++)
 	{
@@ -144,7 +139,7 @@ MatrixXd Deconvolution::launch(MatrixXd inpMatrix)
 		{
 			MatrixXd window = Filter * double(inpMatrix(i, j));
 			outRawMatrix.block(i * stride, j * stride, filterSize, filterSize) = outRawMatrix.block(i * stride, j * stride, filterSize, filterSize) + window;
-			outMatrix = outRawMatrix.block(1, 1, outSize, outSize);
+			outMatrix = outRawMatrix.block(padding, padding, outSize, outSize);
 		}
 	}
 

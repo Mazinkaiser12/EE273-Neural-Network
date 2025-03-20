@@ -1,5 +1,5 @@
 #include <iostream>
-#include <Eigen/Dense>
+#include <Eigen>
 #include <string>
 #include "Utils.h"
 
@@ -15,7 +15,7 @@ void print(string data) {
 }
 
 void print(Eigen::MatrixXd data) {
-	cout << data << endl;
+	cout << data << "\n" << endl;
 }
 
 void error(string data) {

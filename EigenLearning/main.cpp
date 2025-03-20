@@ -1,8 +1,8 @@
 #include <iostream>
-#include <Eigen/Dense>
+#include <Eigen>
 #include "ActivationFunction.h"
 #include "Utils.h"
-#include "PoolingLayer.h"
+#include "Pooling.h"
 #include "Deconvolution.h"
 #include <typeinfo>
 
@@ -11,6 +11,7 @@ using namespace std;
 
 int main()
 {
+	/**
 	//Example code from Eigen website
 	MatrixXd m(2, 2);
 	m(0, 0) = 3;
@@ -66,27 +67,31 @@ int main()
 	//Catchup from week 7 SoftMax
 	MatrixXd b = softmax(m);
 	cout << "Soft max of a matrix" << "\n" << b << endl;
-
+	*/
 	//Testing pooling layer
-	Pooling test(false, 3, 0, 1);
-	test.returnConFig();
+	Pooling test("max", 3, 0, 1);
 	MatrixXd input(5, 5);
 	input <<
-		6, 3, 2, 1, 0,
+		3, 3, 2, 1, 0,
 		0, 0, 1, 3, 1,
 		3, 1, 2, 2, 3,
 		2, 0, 0, 2, 2,
 		2, 0, 0, 0, 1;
+	MatrixXd inputtwo(4, 4);
+	inputtwo <<
+		29, 15, 28, 184,
+		0, 100, 70, 38,
+		12, 12, 7, 2,
+		12, 12, 45, 6;
 	cout << "Input matrix : " << endl;
 	print(input);
-	cout << "Performing pooling..." << endl;
+	cout << "Performing pooling..." << "\n" << endl;
 	MatrixXd output = test.launch(input);
 	cout << "Output matrix : " << endl;
 	print(output);
 
 	//Testing Deconvolution layer
-	Deconvolution testy(3, 1, 2, 4);
-	test.returnConFig();
+	Deconvolution testy(3, 1, 2);
 	MatrixXd Filter(3, 3);
 	Filter <<
 		1, 2, 1,
@@ -101,7 +106,7 @@ int main()
 		3, 2;
 	cout << "Input matrix : " << endl;
 	print(inputD);
-	cout << "Performing deconvolution..." << endl;
+	cout << "Performing deconvolution..." << "\n" << endl;
 	MatrixXd outputD = testy.launch(inputD);
 	cout << "Output matrix : " << endl;
 	print(outputD);

@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
 #include "BaseLayer.h"
-#include <Eigen/Dense>
-#include <Eigen/Core>
+#include <Eigen>
 #include <vector>
 #include <stdexcept>
 #include <map>
@@ -20,17 +19,17 @@ public:
 	Deconvolution();
 
 	//Constructor with size specified but no activation function
-	Deconvolution(int filterSize, int padding, int stride, int outSize);
+	Deconvolution(int filterSize, int padding, int stride);
 
 	//Fully declared pooling contructor
-	Deconvolution(int filterSize, int padding, int stride, int outSize, string ActivationFunction);
+	Deconvolution(int filterSize, int padding, int stride, string ActivationFunction);
 
 	//Returning pooling layer's configuration
-	void returnConFig();
-	void setDeconvolution(int filterSize, int padding, int stride, int outSize);
-	void setDeconvolution(int filterSize, int padding, int stride, int outSize, string ActivationFunction);
+	void getConfig();
+	void setConfig(int filterSize, int padding, int stride);
+	void setConfig(int filterSize, int padding, int stride, string ActivationFunction);
 	void setFilter(MatrixXd Filter);
-	MatrixXd padded(MatrixXd outMatrix, int padding);
+	MatrixXd addPadding(MatrixXd outMatrix, int padding);
 	MatrixXd launch(MatrixXd inpMatrix) override;
 private:
 	int filterSize;
